@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+.containerLetter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.contentLetter {
+  font-family: "Pacifico", cursive;
+  font-size: 25px;
+}
+
+.wordKey {
+  text-decoration: underline #191970;
+}
+
+.wordKey:hover {
+  background-color: #191970;
+  border-radius: 15px;
+  color: #fe0000;
+  cursor: url("../assets/cursor-corazon.svg") 16 16, auto;
+  transition: all 0.8s ease-in-out;
+}
+.cora {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wordKey:hover .iconCora {
+  animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.heart {
+  position: fixed;
+  font-size: 24px;
+  animation: floatUp 1s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+.cora {
+  color: crimson;
+  font-weight: bold;
+}
+
+.wordKey {
+  font-weight: bold;
+}
+
+.floatingWord {
+  position: fixed;
+  font-size: 50px;
+  width: 200px;
+  animation: floatUp 2s ease-out forwards;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
