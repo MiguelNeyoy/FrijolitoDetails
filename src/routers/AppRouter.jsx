@@ -1,9 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import Trivia from "../page/Trivia";
-export default function AppRoutes() {
+import App from "../App";
+export default function AppRoute() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<App />} />
       <Route path="/trivia" element={<Trivia />} />
     </Routes>
   );

@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import AppRoutes from "./routers/AppRouters.jsx";
+import { Link } from "react-router-dom";
 import Letter from "./componentes/letter.jsx";
 import ContadorDias from "./componentes/ContadorDias.jsx";
 import "./App.css";
 import backgraundGift from "./assets/backgraundGift.png";
+import heart from "./assets/heart.webp";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -28,7 +29,14 @@ function App() {
           </button>
           <p className="parrafo">Carta para el amor de mi vida ❤</p>
         </div>
-        <div className="contItem">Te amo mi vida Esta es una nueva version</div>
+        <div className="contItem">
+          <Link to="/trivia" className="linkContainer">
+            <img src={heart} alt="imagen de la trivia " className="img" />
+          </Link>
+          <p className="parrafo">
+            Unas preguntas para mi princesa mas hermosa{" "}
+          </p>
+        </div>
         <div className="contItem">Generador de preguntas</div>
       </section>
 
