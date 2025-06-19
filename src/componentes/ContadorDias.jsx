@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "../styles/ContadorDias.css";
 import healthRed from "../assets/healthRed.svg";
 
 const ContadorDias = () => {

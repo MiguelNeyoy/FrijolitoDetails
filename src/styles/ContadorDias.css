@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .iconHealth {
+    display: none;
+  }
+}
