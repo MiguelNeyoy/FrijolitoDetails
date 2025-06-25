@@ -26,7 +26,7 @@ const ContadorDias = () => {
   const month = Math.floor(daysLeft / 30);
 
   return (
-    <div className="container">
+    <div className="containerDay">
       <img
         src={healthRed}
         alt="corazon"

@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  width: 90vw;
+  height: 90vh;
+  font-family: system-ui;
+  background-color: #a6c1d3;
+  margin: auto;
+  border-radius: 20px;
+
+  background-image: url("../assets/img-playa-nosotros.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-cita {
+  background-image: url("../assets/bg-cita.jpg");
+  color: #f9eef7;
+}
+.bg-snack {
+  background-image: url("../assets/bg-snack.jpg");
+  color: #f9eef7;
+}
+.bg-aniversario {
+  background-image: url("../assets/bg-aniversario.jpg");
+  color: #f9eef7;
+}
+.bg-palabra {
+  background-image: url("../assets/bg-palabra.jpg");
+  color: #f9eef7;
+}
+
+.tittlePregunta {
+  font-family: "Pacifico", cursive;
+}
+.container-answer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.container-answer > button {
+  width: 8rem;
+  height: 3rem;
+  border-radius: 1rem;
+  border: none;
+  cursor: url("../assets/cursor-corazon.svg") 16 16, auto;
+}
+
+.selected {
+  background-color: #c471b4;
+  animation: scale-down-center 0.5s;
+}
+@keyframes scale-down-center {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.btnRespons {
+  width: 8rem;
+  height: 3rem;
+  border-radius: 1rem;
+  border: none;
+}
+
+.btnRespons:hover {
+  animation: scale-down-center 0.5s;
+  cursor: pointer;
+}
+
+.text-area-word {
+  width: 80%;
+  min-height: 80px;
+  max-width: 500px;
+  font-size: 1.2rem;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid #c471b4;
+  background: transparent;
+  resize: vertical;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(196, 113, 180, 0.08);
+  transition: border-color 0.2s;
+  color: #191970;
+}
+.text-area-word::placeholder {
+  color: #f9eef7;
+}
+
+.text-area-word:focus {
+  border-color: #a6c1d3;
+  background: #fff;
+}
