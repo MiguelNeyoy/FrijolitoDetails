@@ -37,7 +37,9 @@ function App() {
             Unas preguntas para mi princesa mas hermosa{" "}
           </p>
         </div>
-        <div className="contItem">Generador de preguntas</div>
+        <div className="contItem">
+          <Link to={"/playdist"}>Las canciones mas especiales </Link>
+        </div>
       </section>
 
       {showModal && (
