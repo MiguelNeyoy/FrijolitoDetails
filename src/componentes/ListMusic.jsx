@@ -3,12 +3,13 @@ import iconPlay from "../assets/heart-play-button.svg";
 import iconPause from "../assets/heart-pause-button.svg";
 import "../styles/Music.css";
 
-const Canciones = ({ linkMusic, frase, nameMusic, artista }) => {
+const Canciones = ({ linkMusic, frase, nameMusic, artista, isAnyPlaying }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   function playAudio() {
     if (audioRef.current) {
       setIsPlaying(true);
+      if (isAnyPlaying) isAnyPlaying(true);
       let volumen = audioRef.current;
       volumen.volume = 0;
       audioRef.current.play();
@@ -31,6 +32,7 @@ const Canciones = ({ linkMusic, frase, nameMusic, artista }) => {
       let audio = audioRef.current;
       audio.volume = 0;
       setIsPlaying(false);
+      if (isAnyPlaying) isAnyPlaying(false);
 
       let vol = 0;
       const interval = setInterval(() => {
@@ -45,14 +47,16 @@ const Canciones = ({ linkMusic, frase, nameMusic, artista }) => {
     }
   }
 
-  function handdleEnd() {
+  const handdleEnd = () => {
     setIsPlaying(false);
-  }
+    if (isAnyPlaying) isAnyPlaying(false);
+  };
+
   return (
     <section className="containerMusic">
       <article className="contTxt">
         <p className="descriptArtist">
-          {nameMusic} <br /> <span>{artista}</span>
+          {nameMusic} <span>{artista}</span>
         </p>
 
         <audio

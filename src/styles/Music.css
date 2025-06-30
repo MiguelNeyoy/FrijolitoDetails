@@ -3,18 +3,30 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  overflow: visible;
 
-  width: 28rem;
+  width: 20rem;
   height: 15rem;
 
   border: 1px black solid;
   border-radius: 15px;
 }
 
-@media (width < 600px) or (height < 700) {
+@media (max-width: 600px), (max-height: 700px) {
   .containerMusic {
-    width: 60%;
-    flex-direction: column;
+    width: 95vw;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .contTxt {
+    height: auto;
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    padding: 10px;
   }
 }
 
@@ -54,6 +66,8 @@
 }
 
 .descriptArtist {
+  display: flex;
+  flex-direction: column;
   font-size: 30px;
 }
 

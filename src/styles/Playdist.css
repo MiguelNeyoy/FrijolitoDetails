@@ -1,10 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+.mainMusic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .listMusic {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  flex-direction: row;
 
   gap: 1.5rem;
   width: 90vw;
   height: 90vh;
+}
+
+.sonando {
+  color: hotpink;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  animation: heartbeat 1s infinite ease-in-out;
+}
+
+.navPlaydist {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 95vw;
+  height: 3.5rem;
+}
+.linkHome {
+  text-decoration: none;
+  padding: 0.8rem;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(196, 113, 180, 0.4);
+}
+.linkHome:hover {
+  background-color: #9797e2;
+  cursor: url("../assets/cursor-corazon.svg") 16 16, auto;
+  box-shadow: 0 2px 8px rgba(196, 113, 180, 0.8);
+  transition: all 0.5s ease-in-out;
+}
+
+.btnNav {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(196, 113, 180, 0.4);
+  transition: box-shadow 0.3s, background-color 0.3s;
+  font-family: "Pacifico", cursive;
+  font-size: 1rem;
+}
+
+.btnNav:hover {
+  cursor: url("../assets/cursor-corazon.svg") 16 16, auto;
+  background-color: #9797e2;
+  box-shadow: 0 4px 16px rgba(196, 113, 180, 0.8);
+  transition: all 0.5s ease-in-out;
+  font-size: 1.3rem;
+}
+
+.containerMusic:hover::after {
+  content: "💖";
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  font-size: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  animation: float-heart 0.8s infinite;
+}
+.containerMusic:hover {
+  background-image: url("../assets/fondo-romantico-morado.webp");
+  transition: all 0.5s ease-in-out;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 600px), (max-height: 700px) {
+  .containerMusic:hover::after {
+    content: "💖";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    font-size: 2rem;
+    opacity: 0;
+    pointer-events: none;
+    animation: float-heart 1.2s infinite;
+  }
+  .navPlaydist {
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: max-content;
+    gap: 0.3rem;
+    width: 95vw;
+  }
+
+  .btnNav:hover {
+    font-size: 1rem;
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+@keyframes float-heart {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.5) translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2) translateY(-10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(1) translateY(-40px);
+  }
 }
