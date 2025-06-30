@@ -100,6 +100,7 @@ export default function Playdist() {
             nameMusic={canciones.nameMusic}
             artista={canciones.artista}
             frase={canciones.frase}
+            isAnyPlaying={setIsAnyPlaying}
           />
         ))}
       </div>

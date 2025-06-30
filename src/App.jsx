@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import Letter from "./componentes/letter.jsx";
 import ContadorDias from "./componentes/ContadorDias.jsx";
 import "./App.css";
 import backgraundGift from "./assets/backgraundGift.png";
 import heart from "./assets/heart.webp";
+import fondoMusic from "./assets/fondo-romantico.webp";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -38,7 +39,14 @@ function App() {
           </p>
         </div>
         <div className="contItem">
-          <Link to={"/playdist"}>Las canciones mas especiales </Link>
+          <Link to={"/playdist"} className="linkContainer">
+            <img
+              src={fondoMusic}
+              alt="background de canciones"
+              className="img"
+            />
+            <p className="parrafo">Las canciones mas especiales </p>
+          </Link>
         </div>
       </section>
 
