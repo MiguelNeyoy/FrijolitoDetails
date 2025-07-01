@@ -9,7 +9,7 @@ import Amapolas from "../assets/audios/Amapolas.mp3";
 import SanLucas from "../assets/audios/SanLucas.mp3";
 
 export default function Playdist() {
-  const [isAnyPlaying, setIsAnyPlaying] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const lista1 = [
     {
@@ -92,7 +92,9 @@ export default function Playdist() {
         </button>
       </nav>
 
-      {isAnyPlaying && <span className="sonando">sonando la cancion</span>}
+      {activeIndex !== null && (
+        <span className="sonando">sonando la cancion</span>
+      )}
       <div className="listMusic">
         {cancionesActuales.map((canciones, i) => (
           <Canciones
@@ -100,7 +102,9 @@ export default function Playdist() {
             nameMusic={canciones.nameMusic}
             artista={canciones.artista}
             frase={canciones.frase}
-            isAnyPlaying={setIsAnyPlaying}
+            isActive={activeIndex === i}
+            onPlay={() => setActiveIndex(i)}
+            onStop={() => setActiveIndex(null)}
           />
         ))}
       </div>

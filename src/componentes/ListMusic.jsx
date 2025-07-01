@@ -1,15 +1,31 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import iconPlay from "../assets/heart-play-button.svg";
 import iconPause from "../assets/heart-pause-button.svg";
 import "../styles/Music.css";
 
-const Canciones = ({ linkMusic, frase, nameMusic, artista, isAnyPlaying }) => {
+const Canciones = ({
+  linkMusic,
+  frase,
+  nameMusic,
+  artista,
+  isActive,
+  onPlay,
+  onStop,
+}) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    if (!isActive && audioRef.current) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    }
+  }, [isActive]);
+
   function playAudio() {
     if (audioRef.current) {
       setIsPlaying(true);
-      if (isAnyPlaying) isAnyPlaying(true);
+      if (onPlay) onPlay();
       let volumen = audioRef.current;
       volumen.volume = 0;
       audioRef.current.play();
@@ -32,7 +48,7 @@ const Canciones = ({ linkMusic, frase, nameMusic, artista, isAnyPlaying }) => {
       let audio = audioRef.current;
       audio.volume = 0;
       setIsPlaying(false);
-      if (isAnyPlaying) isAnyPlaying(false);
+      if (onStop) onStop();
 
       let vol = 0;
       const interval = setInterval(() => {
@@ -49,7 +65,7 @@ const Canciones = ({ linkMusic, frase, nameMusic, artista, isAnyPlaying }) => {
 
   const handdleEnd = () => {
     setIsPlaying(false);
-    if (isAnyPlaying) isAnyPlaying(false);
+    if (onStop) onStop();
   };
 
   return (
