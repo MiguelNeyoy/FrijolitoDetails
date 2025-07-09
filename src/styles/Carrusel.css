@@ -1,3 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+:root {
+  --font: Pacifico, cursive;
+}
+
 .carousel {
   display: flex;
   height: 95%;
@@ -13,6 +18,8 @@
   justify-content: space-evenly;
   width: 100%;
   height: 100%;
+  gap: 20px;
+  box-sizing: border-box;
 }
 
 .imgCarrusel {
@@ -27,9 +34,11 @@
   border: #7a73d3 3px solid;
   display: block;
   margin: 0 auto;
+  gap: 10px;
 
   filter: grayscale(1);
   box-shadow: -10px 10px 25px;
+  box-sizing: border-box;
 }
 
 .imgCarrusel:hover {
@@ -45,4 +54,23 @@
 .arrowRight {
   height: 50px;
   width: 50px;
+}
+
+.respuestas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+  margin-top: 10px;
+  gap: 6px;
+  font-family: var(--font);
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 90vw;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) or (height < 400px) {
+  .respuestas {
+    display: none;
+  }
 }

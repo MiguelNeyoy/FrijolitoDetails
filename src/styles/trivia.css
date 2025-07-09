@@ -32,6 +32,12 @@
   animation: fadeInOverlay 0.3s forwards;
 }
 .contentModalCarrusel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+
   background: #eaeff4;
   padding: 2rem;
   border-radius: 12px;
@@ -39,12 +45,19 @@
   max-width: 95vw;
   max-height: 95vh;
   width: 90%;
-  height: 90%;
+  height: 100%;
   text-align: center;
 
   opacity: 0;
   transform: scale(0.95);
   animation: fadeInModal 0.4s 0.1s forwards;
+}
+
+.btnModalCloseCarrusel {
+  width: 4rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  padding: 10px;
 }
 
 @keyframes fadeInModal {
