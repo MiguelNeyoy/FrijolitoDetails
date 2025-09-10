@@ -14,7 +14,12 @@ main {
   min-width: 100vw;
   height: 100vh;
   gap: 50px;
-  background-color: #eaeff4;
+  background: url(./assets/ImgCreatorPromise/fondo_1jpg.webp);
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-position: center;
+  background-size: cover;
+  object-fit: cover;
 }
 
 .parrafo {

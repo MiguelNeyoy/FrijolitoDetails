@@ -6,6 +6,7 @@ import "./App.css";
 import backgraundGift from "./assets/backgraundGift.png";
 import heart from "./assets/heart.webp";
 import fondoMusic from "./assets/fondo-romantico.webp";
+import backgroundCreator from "./assets/ImgCreatorPromise/fondo_2.webp";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -48,6 +49,16 @@ function App() {
             <p className="parrafo">Las canciones mas especiales </p>
           </Link>
         </div>
+        <article className="contItem">
+          <Link to={"creador-promesa"} className="linkContainer">
+            <img
+              src={backgroundCreator}
+              alt="fondo de la seccion de creador de promesas"
+              className="img"
+            />
+            <p>Creador de Promesas para el amor de mi vida</p>
+          </Link>
+        </article>
       </section>
 
       {showModal && (
