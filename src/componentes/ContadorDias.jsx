@@ -1,13 +1,22 @@
-import { useState, useEffect, useMemo, memo } from "react";
+import { useState, useEffect, memo } from "react";
 import "../styles/ContadorDias.css";
 import healthRed from "../assets/healthRed.svg";
 
 const ContadorDias = memo(() => {
-  const targetDate = useMemo(() => new Date("202-11-21T00:00:00"), []);
-
-  const [timeLeft, setTimeLeft] = useState(() => {
+  const calculateTimeLeft = () => {
+    const targetDate = new Date("2025-11-21T00:00:00");
     const now = new Date();
     const diff = targetDate - now;
+
+    if (diff <= 0) {
+      return {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        months: 0
+      };
+    }
 
     return {
       days: Math.floor(diff / (1000 * 60 * 60 * 24)),
@@ -16,26 +25,17 @@ const ContadorDias = memo(() => {
       seconds: Math.floor((diff % (1000 * 60)) / 1000),
       months: Math.floor(diff / (1000 * 60 * 60 * 24 * 30))
     };
-  });
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const now = new Date();
-      const diff = targetDate - now;
-
-      if (diff > 0) {
-        setTimeLeft({
-          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((diff % (1000 * 60)) / 1000),
-          months: Math.floor(diff / (1000 * 60 * 60 * 24 * 30))
-        });
-      }
+      setTimeLeft(calculateTimeLeft());
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [targetDate]);
+  }, []);
 
   return (
     <div className="containerDay">

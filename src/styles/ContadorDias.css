@@ -20,18 +20,25 @@
 
 .tittle {
   font-size: 2.5rem;
-  color: #ff69b4;
-  text-align: center;
-  margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.subtitle {
-  font-size: 1.2rem;
   color: #fff;
   text-align: center;
   margin: 0;
-  font-weight: 300;
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(255, 105, 180, 0.8),
+    0 0 20px rgba(255, 105, 180, 0.6);
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  font-weight: 500;
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(0, 0, 0, 0.6);
 }
 
 .countdown-grid {
@@ -43,10 +50,12 @@
 }
 
 .countdown-item {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   border-radius: 15px;
   padding: 1.5rem 1rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 105, 180, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,43 +65,55 @@
 
 .countdown-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(255, 105, 180, 0.5);
 }
 
 .countdown-value {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #ff69b4;
+  color: #ff1493;
   line-height: 1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .countdown-label {
   font-size: 0.9rem;
-  color: #666;
+  color: #333;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .date-info {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #fff;
   text-align: center;
   margin: 0;
-  opacity: 0.9;
+  font-weight: 500;
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
 }
 
 .iconHealth {
   width: 60px;
   height: 60px;
-  filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.5));
+  filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.8));
   animation: heartbeat 2s ease-in-out infinite;
 }
 
 @keyframes heartbeat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }
@@ -110,7 +131,7 @@
   }
 
   .subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .countdown-grid {
@@ -132,7 +153,8 @@
   }
 
   .date-info {
-    font-size: 0.9rem;
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
   }
 
   .iconHealth {
@@ -151,7 +173,7 @@
   }
 
   .subtitle {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .countdown-grid {
@@ -169,6 +191,11 @@
 
   .countdown-label {
     font-size: 0.7rem;
+  }
+
+  .date-info {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
   }
 
   .iconHealth {
