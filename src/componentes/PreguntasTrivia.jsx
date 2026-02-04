@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo, memo } from "react";
 import "../styles/PreguntasTrivia.css";
-const PreguntaTrivia = ({ pregunta, opcion, onRespons }) => {
+
+const PreguntaTrivia = memo(({ pregunta, opcion, onRespons }) => {
   const [select, setSelect] = useState(null);
   const [confirm, setConfirm] = useState(false);
 
@@ -9,39 +10,37 @@ const PreguntaTrivia = ({ pregunta, opcion, onRespons }) => {
     setConfirm(false);
   }, [pregunta]);
 
-  function selectOption(option) {
+  const selectOption = useCallback((option) => {
     if (!confirm) {
       setSelect(option);
     }
-  }
+  }, [confirm]);
 
-  function responder() {
+  const responder = useCallback(() => {
     if (select) {
       setConfirm(true);
       if (onRespons) onRespons(select);
     }
-  }
+  }, [select, onRespons]);
 
-  const textFree =
-    Array.isArray(opcion) && opcion.length === 1 && opcion[0] === "";
-  let bgClass = "";
-  switch (pregunta) {
-    case "¿Donde fue nuestra primera cita?":
-      bgClass = "bg-cita";
-      break;
-    case "Cual es el snack favorito de tu novio que es el mas guapo de la relacion":
-      bgClass = "bg-snack";
-      break;
-    case "Cuando es nuestro aniversario?":
-      bgClass = "bg-aniversario";
-      break;
-    case "Si pudieras describirme con una sola palabra, ¿cuál sería?":
-      bgClass = "bg-palabra";
-      break;
-    default:
-      bgClass = "";
-      break;
-  }
+  const textFree = useMemo(() =>
+    Array.isArray(opcion) && opcion.length === 1 && opcion[0] === ""
+    , [opcion]);
+
+  const bgClass = useMemo(() => {
+    switch (pregunta) {
+      case "¿Donde fue nuestra primera cita?":
+        return "bg-cita";
+      case "Cual es el snack favorito de tu novio que es el mas guapo de la relacion":
+        return "bg-snack";
+      case "Cuando es nuestro aniversario?":
+        return "bg-aniversario";
+      case "Si pudieras describirme con una sola palabra, ¿cuál sería?":
+        return "bg-palabra";
+      default:
+        return "";
+    }
+  }, [pregunta]);
 
   return (
     <div className={`container ${bgClass}`}>
@@ -60,9 +59,8 @@ const PreguntaTrivia = ({ pregunta, opcion, onRespons }) => {
             <button
               key={index}
               onClick={() => selectOption(option)}
-              className={`${option === select ? "selected" : ""} ${
-                confirm && option === select ? "confirm" : ""
-              }`}
+              className={`${option === select ? "selected" : ""} ${confirm && option === select ? "confirm" : ""
+                }`}
               disabled={confirm}
             >
               {option}
@@ -79,6 +77,8 @@ const PreguntaTrivia = ({ pregunta, opcion, onRespons }) => {
       </button>
     </div>
   );
-};
+});
+
+PreguntaTrivia.displayName = 'PreguntaTrivia';
 
 export default PreguntaTrivia;

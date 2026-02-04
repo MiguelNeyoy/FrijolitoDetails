@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import LetterContent from "./LetterContent";
 import closeLetter from "../assets/closeLetter.svg";
 import "../styles/letter.css";
-function Letter() {
+
+const Letter = memo(() => {
   const [opened, setOpened] = useState(false);
 
   return (
@@ -25,6 +26,8 @@ function Letter() {
       )}
     </section>
   );
-}
+});
+
+Letter.displayName = 'Letter';
 
 export default Letter;

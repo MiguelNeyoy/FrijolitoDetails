@@ -1,14 +1,28 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo, memo } from "react";
 import flower from "../assets/flower.svg";
 import heart from "../assets/healthRed.svg";
 import HeartAnimadoLetter from "./HeartAnimadoLetter";
 import "../styles/contentLetter.css";
 
-const LetterContent = () => {
+const LetterContent = memo(() => {
   const [hearts, setHearts] = useState([]);
   const [words, setWords] = useState([]);
 
-  function handleClick(e) {
+  const wordList = useMemo(() => [
+    "Te amo",
+    "Mi amor",
+    "Guapa",
+    "Frijolito",
+    "💕",
+    "Eres lo mejor de mi vida",
+    "💖",
+  ], []);
+
+  const randomWord = useCallback(() => {
+    return wordList[Math.floor(Math.random() * wordList.length)];
+  }, [wordList]);
+
+  const handleClick = useCallback((e) => {
     const newHeart = {
       id: Date.now(),
       x: e.clientX,
@@ -19,21 +33,9 @@ const LetterContent = () => {
     setTimeout(() => {
       setHearts((prev) => prev.filter((h) => h.id !== newHeart.id));
     }, 1000);
-  }
-  const randomWord = () => {
-    const wordList = [
-      "Te amo",
-      "Mi amor",
-      "Guapa",
-      "Frijolito",
-      "💕",
-      "Eres lo mejor de mi vida",
-      "💖",
-    ];
-    return wordList[Math.floor(Math.random() * wordList.length)];
-  };
+  }, []);
 
-  function handleWordsClick(e) {
+  const handleWordsClick = useCallback((e) => {
     const centerX = window.innerWidth / 2;
     const newWord = {
       id: Date.now(),
@@ -47,7 +49,7 @@ const LetterContent = () => {
     setTimeout(() => {
       setWords((prev) => prev.filter((h) => h.id !== newWord.id));
     }, 5000);
-  }
+  }, [randomWord]);
 
   return (
     <article className="containerLetter">
@@ -106,5 +108,8 @@ const LetterContent = () => {
       <img className="icon-flower" src={flower} alt="Es el icon svg" />
     </article>
   );
-};
+});
+
+LetterContent.displayName = 'LetterContent';
+
 export default LetterContent;

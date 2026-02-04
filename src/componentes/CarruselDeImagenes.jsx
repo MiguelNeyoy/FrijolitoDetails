@@ -1,21 +1,23 @@
 import "../styles/Carrusel.css";
-import { useState } from "react";
+import { useState, useCallback, memo } from "react";
 import arrowLeft from "../assets/arrow-left-icon.svg";
 import arrowRight from "../assets/arrow-right-icon.svg";
-import { motion, AnimatePresence } from "motion/react";
-export default function Carrusel({ imagenes, respuestaTrivia }) {
+
+const Carrusel = memo(({ imagenes, respuestaTrivia }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [corretAnser, setCorrectAnser] = useState([]);
-  const handleNext = () => {
+
+  const handleNext = useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex + 1 === imagenes.length ? 0 : prevIndex + 1
     );
-  };
-  const handlePrevious = () => {
+  }, [imagenes.length]);
+
+  const handlePrevious = useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex - 1 < 0 ? imagenes.length - 1 : prevIndex - 1
     );
-  };
+  }, [imagenes.length]);
+
   return (
     <div className="carousel">
       <div className="slide_direction">
@@ -31,6 +33,8 @@ export default function Carrusel({ imagenes, respuestaTrivia }) {
           key={currentIndex}
           src={imagenes[currentIndex]}
           className="imgCarrusel"
+          loading="lazy"
+          alt={`Imagen del carrusel ${currentIndex + 1}`}
         />
 
         <div className="respuestas">
@@ -47,4 +51,8 @@ export default function Carrusel({ imagenes, respuestaTrivia }) {
       </div>
     </div>
   );
-}
+});
+
+Carrusel.displayName = 'Carrusel';
+
+export default Carrusel;

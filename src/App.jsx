@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import Letter from "./componentes/letter.jsx";
 import ContadorDias from "./componentes/ContadorDias.jsx";
@@ -10,6 +10,15 @@ import backgroundCreator from "./assets/ImgCreatorPromise/fondo_2.webp";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = useCallback(() => {
+    setShowModal(true);
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setShowModal(false);
+  }, []);
+
   return (
     <main>
       <ContadorDias />
@@ -17,9 +26,7 @@ function App() {
       <section className="contGifs">
         <div className="contItem">
           <button
-            onClick={() => {
-              setShowModal(true);
-            }}
+            onClick={handleOpenModal}
             className="buttonImg"
           >
             <img
@@ -27,13 +34,14 @@ function App() {
               src={backgraundGift}
               title="sos la mujer mas hermosa"
               alt="Esta es la imagen que oculta la sorpresa"
+              loading="lazy"
             />
           </button>
           <p className="parrafo">Carta para el amor de mi vida ❤</p>
         </div>
         <div className="contItem">
           <Link to="/trivia" className="linkContainer">
-            <img src={heart} alt="imagen de la trivia " className="img" />
+            <img src={heart} alt="imagen de la trivia " className="img" loading="lazy" />
           </Link>
           <p className="parrafo">
             Unas preguntas para mi princesa mas hermosa{" "}
@@ -45,6 +53,7 @@ function App() {
               src={fondoMusic}
               alt="background de canciones"
               className="img"
+              loading="lazy"
             />
             <p className="parrafo">Las canciones mas especiales </p>
           </Link>
@@ -55,6 +64,7 @@ function App() {
               src={backgroundCreator}
               alt="fondo de la seccion de creador de promesas"
               className="img"
+              loading="lazy"
             />
             <p>Creador de Promesas para el amor de mi vida</p>
           </Link>
@@ -62,9 +72,9 @@ function App() {
       </section>
 
       {showModal && (
-        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+        <div className="modal-overlay" onClick={handleCloseModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="close-btn" onClick={() => setShowModal(false)}>
+            <button className="close-btn" onClick={handleCloseModal}>
               Cerrar
             </button>
             <Letter />

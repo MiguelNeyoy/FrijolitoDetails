@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import PreguntaTrivia from "../componentes/PreguntasTrivia.jsx";
 import Carrusel from "../componentes/CarruselDeImagenes.jsx";
 import "../styles/trivia.css";
@@ -10,7 +10,7 @@ import imgCarrusel4 from "../assets/imgCarruselCuatro.jpg";
 import imgCarrusel5 from "../assets/imgCarruselCinco.jpg";
 
 function Trivia() {
-  const preguntas = [
+  const preguntas = useMemo(() => [
     {
       pregunta: "¿Donde fue nuestra primera cita?",
       opcion: ["En un cafe", "En un such", "Maruchan Premiun", "elote"],
@@ -34,12 +34,21 @@ function Trivia() {
       pregunta: "Si pudieras describirme con una sola palabra, ¿cuál sería?",
       opcion: [""],
     },
-  ];
+  ], []);
+
+  const imagenes = useMemo(() => [
+    imgCarrusel1,
+    imgCarrusel2,
+    imgCarrusel3,
+    imgCarrusel4,
+    imgCarrusel5,
+  ], []);
 
   const [indice, setIndice] = useState(0);
   const [showCarrusel, setShowCarrusel] = useState(false);
   const [restulTrivia, setResultTrivia] = useState([]);
-  const avanzar = (respuesta) => {
+
+  const avanzar = useCallback((respuesta) => {
     setResultTrivia((prev) => [...prev, respuesta]);
     console.log("Respuesta : ", respuesta);
     if (indice + 1 < preguntas.length) {
@@ -47,15 +56,11 @@ function Trivia() {
     } else {
       setShowCarrusel(true);
     }
-  };
+  }, [indice, preguntas.length]);
 
-  const imagenes = [
-    imgCarrusel1,
-    imgCarrusel2,
-    imgCarrusel3,
-    imgCarrusel4,
-    imgCarrusel5,
-  ];
+  const handleCloseCarrusel = useCallback(() => {
+    setShowCarrusel(false);
+  }, []);
 
   return (
     <div className="main">
@@ -68,14 +73,14 @@ function Trivia() {
         onRespons={avanzar}
       />
       {showCarrusel && (
-        <div onClick={() => setShowCarrusel(false)} className="modalCarrusel">
+        <div onClick={handleCloseCarrusel} className="modalCarrusel">
           <div
             className="contentModalCarrusel"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               className="btnModalCloseCarrusel"
-              onClick={() => setShowCarrusel(false)}
+              onClick={handleCloseCarrusel}
             >
               {" "}
               Cerrar
