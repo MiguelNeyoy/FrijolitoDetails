@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
 .containerLetter {
   display: flex;
   justify-content: center;
@@ -7,30 +8,30 @@
   flex-wrap: wrap;
 
   background-color: #eaeff4;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #ff69b4;
+  text-align: center;
 }
 
 .contentLetter {
   font-family: "Pacifico", cursive;
   font-size: 25px;
-}
-@media (max-width: 600px) or (max-height: 800px) {
-  .contentLetter {
-    max-width: 95vw;
-    max-height: 80vh;
-    overflow-y: auto;
-    height: auto;
-    font-size: 18px;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    padding: 10px;
-    box-sizing: border-box;
-    text-align: center;
-    margin: 0 auto;
-  }
+  line-height: 1.6;
+  max-width: 800px;
+  padding: 1rem;
+  text-align: justify;
 }
 
 .wordKey {
   text-decoration: underline #191970;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .wordKey:hover {
@@ -38,12 +39,22 @@
   border-radius: 15px;
   color: #fe0000;
   cursor: url("../assets/cursor-corazon.svg") 16 16, auto;
-  transition: all 0.8s ease-in-out;
+  padding: 0.2rem 0.4rem;
 }
+
 .cora {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  color: crimson;
+  font-weight: bold;
+}
+
+.iconCora {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
 }
 
 .wordKey:hover .iconCora {
@@ -51,19 +62,18 @@
 }
 
 @keyframes heartbeat {
-  0% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
-  25% {
-    transform: scale(1.2);
-  }
-  50% {
-    transform: scale(1);
-  }
+
+  25%,
   75% {
     transform: scale(1.2);
   }
-  100% {
+
+  50% {
     transform: scale(1);
   }
 }
@@ -73,6 +83,7 @@
   font-size: 24px;
   animation: floatUp 1s ease-out forwards;
   pointer-events: none;
+  z-index: 9999;
 }
 
 @keyframes floatUp {
@@ -80,18 +91,11 @@
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(-100px);
     opacity: 0;
   }
-}
-.cora {
-  color: crimson;
-  font-weight: bold;
-}
-
-.wordKey {
-  font-weight: bold;
 }
 
 .floatingWord {
@@ -102,15 +106,107 @@
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 
-@keyframes floatUp {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
+.icon-flower {
+  filter: drop-shadow(0 0 60px rgba(204, 0, 219, 0.9));
+  width: 80px;
+  height: 80px;
+  margin-top: 1rem;
+}
+
+/* Tablet responsive */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.75rem;
   }
-  100% {
-    transform: translateY(-100px);
-    opacity: 0;
+
+  .contentLetter {
+    font-size: 20px;
+    max-width: 90vw;
+  }
+
+  .floatingWord {
+    font-size: 40px;
+    width: 150px;
+  }
+
+  .icon-flower {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .containerLetter {
+    padding: 0.75rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .contentLetter {
+    max-width: 95vw;
+    font-size: 18px;
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  .floatingWord {
+    font-size: 30px;
+    width: 120px;
+  }
+
+  .heart {
+    font-size: 20px;
+  }
+
+  .icon-flower {
+    width: 60px;
+    height: 60px;
+  }
+
+  .iconCora {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .contentLetter {
+    font-size: 16px;
+    padding: 0.5rem;
+  }
+
+  .floatingWord {
+    font-size: 25px;
+    width: 100px;
+  }
+
+  .icon-flower {
+    width: 50px;
+    height: 50px;
+  }
+
+  .wordKey:hover {
+    padding: 0.1rem 0.3rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 380px) {
+  .contentLetter {
+    font-size: 14px;
+  }
+
+  .title {
+    font-size: 1.2rem;
   }
 }

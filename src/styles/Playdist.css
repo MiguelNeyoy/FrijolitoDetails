@@ -6,6 +6,8 @@
   align-items: center;
   flex-direction: column;
   gap: 20px;
+  min-height: 100vh;
+  padding: 1rem;
 
   font-family: "Pacifico", cursive;
   font-weight: 400;
@@ -21,7 +23,8 @@
 
   gap: 1.5rem;
   width: 90vw;
-  height: 90vh;
+  max-width: 1400px;
+  padding: 1rem;
 }
 
 .sonando {
@@ -36,22 +39,34 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
   width: 95vw;
-  height: 3.5rem;
+  max-width: 1400px;
+  min-height: 3.5rem;
+  padding: 0.5rem;
 }
+
 .linkHome {
   text-decoration: none;
-  padding: 0.8rem;
+  padding: 0.8rem 1.2rem;
   color: black;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(196, 113, 180, 0.4);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .linkHome:hover {
   background-color: #9797e2;
   cursor: url("../assets/cursor-corazon.svg") 16 16, auto;
   box-shadow: 0 2px 8px rgba(196, 113, 180, 0.8);
-  transition: all 0.5s ease-in-out;
+  transform: translateY(-2px);
 }
 
 .btnNav {
@@ -59,19 +74,21 @@
   outline: none;
   background-color: transparent;
   border-radius: 10px;
-  padding: 10px;
+  padding: 10px 15px;
   box-shadow: 0 2px 8px rgba(196, 113, 180, 0.4);
-  transition: box-shadow 0.3s, background-color 0.3s;
+  transition: all 0.3s ease;
   font-family: "Pacifico", cursive;
   font-size: 1rem;
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .btnNav:hover {
   cursor: url("../assets/cursor-corazon.svg") 16 16, auto;
   background-color: #9797e2;
   box-shadow: 0 4px 16px rgba(196, 113, 180, 0.8);
-  transition: all 0.5s ease-in-out;
-  font-size: 1.3rem;
+  transform: translateY(-2px);
 }
 
 .containerMusic:hover::after {
@@ -85,6 +102,7 @@
   pointer-events: none;
   animation: float-heart 0.8s infinite;
 }
+
 .containerMusic:hover {
   background-image: url("../assets/fondo-romantico-morado.webp");
   transition: all 0.5s ease-in-out;
@@ -93,54 +111,125 @@
   background-size: cover;
 }
 
-@media (max-width: 600px), (max-height: 700px) {
-  .containerMusic:hover::after {
-    content: "💖";
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%) scale(1);
-    font-size: 2rem;
-    opacity: 0;
-    pointer-events: none;
-    animation: float-heart 1.2s infinite;
-  }
-  .navPlaydist {
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-height: max-content;
-    gap: 0.3rem;
-    width: 95vw;
-  }
-
-  .btnNav:hover {
-    font-size: 1rem;
-  }
-}
-
 @keyframes heartbeat {
+
   0%,
   100% {
     transform: scale(1);
     opacity: 1;
   }
+
   50% {
     transform: scale(1.2);
     opacity: 0.8;
   }
 }
+
 @keyframes float-heart {
   0% {
     opacity: 0;
     transform: translateX(-50%) scale(0.5) translateY(0);
   }
+
   50% {
     opacity: 1;
     transform: translateX(-50%) scale(1.2) translateY(-10px);
   }
+
   100% {
     opacity: 0;
     transform: translateX(-50%) scale(1) translateY(-40px);
+  }
+}
+
+/* Tablet responsive */
+@media (max-width: 768px) {
+  .navPlaydist {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btnNav {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  .linkHome {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .listMusic {
+    gap: 1.25rem;
+  }
+
+  .sonando {
+    font-size: 1.2rem;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .mainMusic {
+    gap: 15px;
+    padding: 0.5rem;
+  }
+
+  .navPlaydist {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .linkHome {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .btnNav {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 0.75rem;
+    text-align: center;
+  }
+
+  .btnNav:hover {
+    font-size: 0.85rem;
+  }
+
+  .listMusic {
+    flex-direction: column;
+    gap: 1rem;
+    width: 95vw;
+    padding: 0.5rem;
+  }
+
+  .sonando {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .containerMusic:hover::after {
+    top: 10px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navPlaydist {
+    padding: 0.5rem;
+  }
+
+  .btnNav,
+  .linkHome {
+    font-size: 0.8rem;
+    padding: 0.6rem;
+  }
+
+  .listMusic {
+    gap: 0.75rem;
   }
 }

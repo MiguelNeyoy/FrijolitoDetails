@@ -11,23 +11,7 @@
 
   border: 1px black solid;
   border-radius: 15px;
-}
-
-@media (max-width: 600px), (max-height: 700px) {
-  .containerMusic {
-    width: 95vw;
-    min-width: 0;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
-  .contTxt {
-    height: auto;
-    max-width: 100%;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    box-sizing: border-box;
-    padding: 10px;
-  }
+  transition: all 0.3s ease;
 }
 
 .contTxt {
@@ -40,37 +24,135 @@
 
   padding: 20px;
   height: 15rem;
+  flex: 1;
 }
 
-.btnPlay {
-  margin-right: 0.5rem;
-  border: none;
-  outline: none;
-  border-radius: 10px;
-  width: 34px;
-  background-color: transparent;
-}
-
-.iconPlay {
-  width: 34px;
-  height: 34px;
-}
-
+.btnPlay,
 .btnPause {
   margin-right: 0.5rem;
   border: none;
   outline: none;
   border-radius: 10px;
-  width: 34px;
+  width: 44px;
+  height: 44px;
   background-color: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btnPlay:hover,
+.btnPause:hover {
+  transform: scale(1.1);
+}
+
+.iconPlay {
+  width: 34px;
+  height: 34px;
+  pointer-events: none;
 }
 
 .descriptArtist {
   display: flex;
   flex-direction: column;
-  font-size: 30px;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.descriptArtist > span {
-  font-size: 18px;
+.descriptArtist>span {
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
+
+.frase {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #333;
+}
+
+/* Tablet responsive */
+@media (max-width: 768px) {
+  .containerMusic {
+    width: 18rem;
+    height: 14rem;
+  }
+
+  .contTxt {
+    padding: 15px;
+  }
+
+  .descriptArtist {
+    font-size: 1.3rem;
+  }
+
+  .descriptArtist>span {
+    font-size: 0.9rem;
+  }
+
+  .frase {
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .containerMusic {
+    width: 95vw;
+    max-width: 400px;
+    height: auto;
+    min-height: 12rem;
+    flex-direction: column;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .contTxt {
+    width: 100%;
+    height: auto;
+    padding: 1rem 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .descriptArtist {
+    font-size: 1.2rem;
+  }
+
+  .descriptArtist>span {
+    font-size: 0.85rem;
+  }
+
+  .frase {
+    font-size: 0.8rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .btnPlay,
+  .btnPause {
+    margin: 0.75rem 0 0 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .containerMusic {
+    min-height: 10rem;
+    padding: 0.75rem;
+  }
+
+  .contTxt {
+    padding: 0.75rem 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .descriptArtist {
+    font-size: 1.1rem;
+  }
+
+  .descriptArtist>span {
+    font-size: 0.8rem;
+  }
+
+  .frase {
+    font-size: 0.75rem;
+  }
 }

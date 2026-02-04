@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
 :root {
   --font: Pacifico, cursive;
 }
@@ -9,7 +10,10 @@
   width: 95%;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
 }
+
 .slide_direction {
   display: flex;
   flex-wrap: wrap;
@@ -24,43 +28,56 @@
 
 .imgCarrusel {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 600px;
   width: auto;
   height: auto;
   object-fit: contain;
-  background-size: cover;
-  background-position: center;
   border-radius: 15px;
   border: #7a73d3 3px solid;
   display: block;
   margin: 0 auto;
-  gap: 10px;
 
   filter: grayscale(1);
-  box-shadow: -10px 10px 25px;
+  box-shadow: -10px 10px 25px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
+  transition: filter 0.4s ease-in-out, transform 0.3s ease;
 }
 
 .imgCarrusel:hover {
   cursor: url("../assets/cursor-corazon.svg") 16 16, auto;
   filter: grayscale(0);
-  transition: filter 0.4s ease-in-out;
+  transform: scale(1.02);
 }
-.arrowLeft {
-  width: 50px;
-  height: 50px;
+
+.left,
+.right {
   cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
 }
+
+.left:hover,
+.right:hover {
+  transform: scale(1.2);
+}
+
+.arrowLeft,
 .arrowRight {
-  height: 50px;
   width: 50px;
+  height: 50px;
+  pointer-events: none;
 }
 
 .respuestas {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-top: 10px;
   gap: 6px;
   font-family: var(--font);
@@ -68,9 +85,90 @@
   overflow-wrap: break-word;
   max-width: 90vw;
   box-sizing: border-box;
+  padding: 0.5rem;
 }
-@media (max-width: 600px) or (height < 400px) {
+
+/* Tablet responsive */
+@media (max-width: 768px) {
+  .carousel {
+    padding: 0.75rem;
+  }
+
+  .slide_direction {
+    gap: 15px;
+  }
+
+  .imgCarrusel {
+    max-height: 500px;
+  }
+
+  .arrowLeft,
+  .arrowRight {
+    width: 40px;
+    height: 40px;
+  }
+
   .respuestas {
+    font-size: 1.3rem;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .carousel {
+    padding: 0.5rem;
+    height: auto;
+  }
+
+  .slide_direction {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .imgCarrusel {
+    max-height: 400px;
+    max-width: 95%;
+    border: #7a73d3 2px solid;
+  }
+
+  .arrowLeft,
+  .arrowRight {
+    width: 35px;
+    height: 35px;
+  }
+
+  .left,
+  .right {
+    padding: 0.25rem;
+  }
+
+  .respuestas {
+    font-size: 1rem;
+    margin-top: 5px;
+    gap: 4px;
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .imgCarrusel {
+    max-height: 350px;
+  }
+
+  .arrowLeft,
+  .arrowRight {
+    width: 30px;
+    height: 30px;
+  }
+
+  .respuestas {
+    font-size: 0.9rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 380px) {
+  .imgCarrusel {
+    max-height: 300px;
   }
 }

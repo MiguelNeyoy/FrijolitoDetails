@@ -1,17 +1,41 @@
-import { useMemo, memo } from "react";
+import { useState, useEffect, useMemo, memo } from "react";
 import "../styles/ContadorDias.css";
 import healthRed from "../assets/healthRed.svg";
 
 const ContadorDias = memo(() => {
-  const { daysLeft, month } = useMemo(() => {
-    const targetDate = new Date("2025-11-21");
-    const today = new Date();
-    const timeDiff = targetDate - today;
-    const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-    const months = Math.floor(days / 30);
+  const targetDate = useMemo(() => new Date("202-11-21T00:00:00"), []);
 
-    return { daysLeft: days, month: months };
-  }, []); // Only calculate once on mount
+  const [timeLeft, setTimeLeft] = useState(() => {
+    const now = new Date();
+    const diff = targetDate - now;
+
+    return {
+      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((diff % (1000 * 60)) / 1000),
+      months: Math.floor(diff / (1000 * 60 * 60 * 24 * 30))
+    };
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff > 0) {
+        setTimeLeft({
+          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((diff % (1000 * 60)) / 1000),
+          months: Math.floor(diff / (1000 * 60 * 60 * 24 * 30))
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [targetDate]);
 
   return (
     <div className="containerDay">
@@ -21,13 +45,31 @@ const ContadorDias = memo(() => {
         title="te amo"
         className="iconHealth"
       />
-      <h1 className="tittle">Cuenta regresiva</h1>
-      <p className="parrafo">
-        Faltan <strong>{daysLeft}</strong> días para el 21 de noviembre de 2025.
-      </p>
-      <p className="parrafo">
-        Faltan <strong> {month} </strong> meses para nuestro primer año juntos ❤
-      </p>
+      <div className="countdown-content">
+        <h1 className="tittle">Cuenta regresiva</h1>
+        <p className="subtitle">Nuestro primer año juntos ❤</p>
+
+        <div className="countdown-grid">
+          <div className="countdown-item">
+            <div className="countdown-value">{timeLeft.days}</div>
+            <div className="countdown-label">Días</div>
+          </div>
+          <div className="countdown-item">
+            <div className="countdown-value">{timeLeft.hours}</div>
+            <div className="countdown-label">Horas</div>
+          </div>
+          <div className="countdown-item">
+            <div className="countdown-value">{timeLeft.minutes}</div>
+            <div className="countdown-label">Minutos</div>
+          </div>
+          <div className="countdown-item">
+            <div className="countdown-value">{timeLeft.seconds}</div>
+            <div className="countdown-label">Segundos</div>
+          </div>
+        </div>
+
+        <p className="date-info">21 de noviembre de 2025</p>
+      </div>
     </div>
   );
 });

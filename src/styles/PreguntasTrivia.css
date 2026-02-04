@@ -8,10 +8,13 @@
 
   width: 90vw;
   height: 90vh;
+  min-height: 600px;
   font-family: system-ui;
   background-color: #a6c1d3;
   margin: auto;
   border-radius: 20px;
+  padding: 2rem;
+  box-sizing: border-box;
 
   background-image: url("../assets/img-playa-nosotros.jpg");
   background-repeat: no-repeat;
@@ -23,14 +26,17 @@
   background-image: url("../assets/bg-cita.jpg");
   color: #f9eef7;
 }
+
 .bg-snack {
   background-image: url("../assets/bg-snack.jpg");
   color: #f9eef7;
 }
+
 .bg-aniversario {
   background-image: url("../assets/bg-aniversario.jpg");
   color: #f9eef7;
 }
+
 .bg-palabra {
   background-image: url("../assets/bg-palabra.jpg");
   color: #f9eef7;
@@ -38,83 +44,224 @@
 
 .tittlePregunta {
   font-family: "Pacifico", cursive;
+  font-size: 2rem;
+  text-align: center;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
+
 .container-answer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
+  width: 100%;
+  max-width: 500px;
 }
 
-.container-answer > button {
-  width: 8rem;
+.container-answer>button {
+  width: 10rem;
   height: 3rem;
   border-radius: 1rem;
   border: none;
   cursor: url("../assets/cursor-corazon.svg") 16 16, auto;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.container-answer>button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(196, 113, 180, 0.5);
 }
 
 .selected {
-  background-color: #c471b4;
+  background-color: #c471b4 !important;
+  color: white;
   animation: scale-down-center 0.5s;
 }
+
 @keyframes scale-down-center {
   0% {
     transform: scale3d(1, 1, 1);
   }
+
   30% {
     transform: scale3d(1.25, 0.75, 1);
   }
+
   40% {
     transform: scale3d(0.75, 1.25, 1);
   }
+
   50% {
     transform: scale3d(1.15, 0.85, 1);
   }
+
   65% {
     transform: scale3d(0.95, 1.05, 1);
   }
+
   75% {
     transform: scale3d(1.05, 0.95, 1);
   }
+
   100% {
     transform: scale3d(1, 1, 1);
   }
 }
 
 .btnRespons {
-  width: 8rem;
+  width: 10rem;
   height: 3rem;
   border-radius: 1rem;
   border: none;
+  background-color: #ff69b4;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 44px;
+  min-height: 44px;
 }
 
-.btnRespons:hover {
+.btnRespons:hover:not(:disabled) {
   animation: scale-down-center 0.5s;
-  cursor: pointer;
+  background-color: #ff1493;
+}
+
+.btnRespons:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .text-area-word {
-  width: 80%;
-  min-height: 80px;
+  width: 90%;
+  min-height: 100px;
   max-width: 500px;
   font-size: 1.2rem;
   padding: 12px;
   border-radius: 12px;
   border: 2px solid #c471b4;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.9);
   resize: vertical;
   outline: none;
-  box-shadow: 0 2px 8px rgba(196, 113, 180, 0.08);
-  transition: border-color 0.2s;
+  box-shadow: 0 2px 8px rgba(196, 113, 180, 0.2);
+  transition: all 0.3s ease;
   color: #191970;
+  font-family: inherit;
 }
+
 .text-area-word::placeholder {
-  color: #f9eef7;
+  color: #999;
 }
 
 .text-area-word:focus {
-  border-color: #a6c1d3;
+  border-color: #ff69b4;
   background: #fff;
+  box-shadow: 0 4px 15px rgba(196, 113, 180, 0.4);
+}
+
+/* Tablet responsive */
+@media (max-width: 768px) {
+  .container {
+    width: 95vw;
+    height: auto;
+    min-height: 70vh;
+    padding: 1.5rem;
+  }
+
+  .tittlePregunta {
+    font-size: 1.5rem;
+  }
+
+  .container-answer>button {
+    width: 9rem;
+    height: 2.75rem;
+    font-size: 0.95rem;
+  }
+
+  .btnRespons {
+    width: 9rem;
+    height: 2.75rem;
+    font-size: 0.95rem;
+  }
+
+  .text-area-word {
+    font-size: 1.1rem;
+    min-height: 90px;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .container {
+    width: 95vw;
+    height: auto;
+    min-height: 80vh;
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .tittlePregunta {
+    font-size: 1.3rem;
+    padding: 0 0.5rem;
+  }
+
+  .container-answer {
+    gap: 15px;
+    max-width: 100%;
+  }
+
+  .container-answer>button {
+    width: 100%;
+    max-width: 280px;
+    height: 3rem;
+    font-size: 0.9rem;
+  }
+
+  .btnRespons {
+    width: 100%;
+    max-width: 280px;
+    height: 3rem;
+    font-size: 0.9rem;
+  }
+
+  .text-area-word {
+    width: 95%;
+    font-size: 1rem;
+    min-height: 80px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem 0.75rem;
+    min-height: 75vh;
+    border-radius: 15px;
+  }
+
+  .tittlePregunta {
+    font-size: 1.1rem;
+  }
+
+  .container-answer>button {
+    max-width: 260px;
+    height: 2.75rem;
+    font-size: 0.85rem;
+  }
+
+  .btnRespons {
+    max-width: 260px;
+    height: 2.75rem;
+    font-size: 0.85rem;
+  }
+
+  .text-area-word {
+    font-size: 0.95rem;
+    min-height: 70px;
+  }
 }
