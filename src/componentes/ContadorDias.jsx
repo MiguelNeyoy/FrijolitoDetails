@@ -4,7 +4,19 @@ import healthRed from "../assets/healthRed.svg";
 
 const ContadorDias = memo(() => {
   const calculateTimeLeft = () => {
-    const targetDate = new Date("2026-11-21T00:00:00");
+    const getNextAnniversary = () => {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      const anniversary = new Date(`${currentYear}-11-21T00:00:00`);
+
+      // Si ya pasó el aniversario de este año, vamos al del siguiente
+      if (now > anniversary) {
+        anniversary.setFullYear(currentYear + 1);
+      }
+      return anniversary;
+    };
+
+    const targetDate = getNextAnniversary();
     const now = new Date();
     const diff = targetDate - now;
 
@@ -14,7 +26,8 @@ const ContadorDias = memo(() => {
         hours: 0,
         minutes: 0,
         seconds: 0,
-        months: 0
+        months: 0,
+        targetYear: targetDate.getFullYear()
       };
     }
 
@@ -23,11 +36,12 @@ const ContadorDias = memo(() => {
       hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
       minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
       seconds: Math.floor((diff % (1000 * 60)) / 1000),
-      months: Math.floor(diff / (1000 * 60 * 60 * 24 * 30))
+      months: Math.floor(diff / (1000 * 60 * 60 * 24 * 30)),
+      targetYear: targetDate.getFullYear()
     };
   };
 
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -68,7 +82,7 @@ const ContadorDias = memo(() => {
           </div>
         </div>
 
-        <p className="date-info">21 de noviembre de 2025</p>
+        <p className="date-info">21 de noviembre de {timeLeft.targetYear}</p>
       </div>
     </div>
   );
